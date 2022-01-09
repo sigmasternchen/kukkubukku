@@ -1,0 +1,31 @@
+CREATE TABLE IF NOT EXISTS users (
+	id INT PRIMARY KEY AUTO_INCREMENT,
+	username TEXT,
+	password TEXT,
+	salt TEXT
+);
+
+CREATE TABLE IF NOT EXISTS tags (
+	id INT PRIMARY KEY AUTO_INCREMENT,
+	name TEXT
+);
+
+CREATE TABLE IF NOT EXISTS recipes (
+	id INT PRIMARY KEY AUTO_INCREMENT,
+	userFk INT REFERENCES users(id),
+	name TEXT,
+	description TEXT
+);
+
+CREATE TABLE IF NOT EXISTS recipeTags (
+	id INT PRIMARY KEY AUTO_INCREMENT,
+	recipeFk INT REFERENCES recipes(id),
+	tagFk INT REFERENCES tags(id)
+);
+
+CREATE TABLE IF NOT EXISTS ingredients (
+	id INT PRIMARY KEY AUTO_INCREMENT,
+	recipeFk INT REFERENCES recipes(id),
+	name TEXT,
+	quantity TEXT
+);
