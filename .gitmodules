@@ -1,0 +1,3 @@
+[submodule "shochu"]
+	path = shochu
+	url = https://github.com/overflowerror/shochu
