@@ -32,6 +32,7 @@ loginUser() {
 
 	password="$(hashPassword "$password" "$salt")"
 
-	test "$password" = "$hash"
+	# return true if password is correct
+	test "$password" != "$hash"
 	return
 }
