@@ -13,10 +13,13 @@
 . utils/headers.sh
 
 . data/users.sh
+. data/recipes.sh
 
 . controller/users.sh
 . controller/home.sh
 . controller/backend.sh
+
+. credentials.sh
 
 connect "$mysqlHost" "$mysqlUser" "$mysqlPassword" "$mysqlDB"
 

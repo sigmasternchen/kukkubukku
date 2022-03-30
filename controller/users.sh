@@ -2,22 +2,34 @@
 
 route GET "/login" loginForm
 loginForm() {
-	htmlContent
-	endHeaders
-	
-	title="Login"
-	content="$(template "templates/login.fragment.templ")"
-	template "templates/layout.html.templ"
+	if isLoggedIn; then
+		redirect "/backend"
+		endHeaders
+	else
+		htmlContent
+		endHeaders
+		
+		title="Login"
+		fail=0
+		test "$(queryString "status")"
+		content="$(template "templates/login.fragment.templ")"
+		template "templates/layout.html.templ"
+	fi
 }
 
 route POST "/login" login
 login() {
+	cacheFormData
+
 	username="$(formData "username")"
 	password="$(formData "password")"
-
+	
 	if loginUser "$username" "$password"; then
-		echo "ok"
+		setLoggedIn "$username"
+		redirect "/backend"
 	else
-		echo "ko"
+		redirect "/login?status=fail"
 	fi
+	
+	endHeaders
 }

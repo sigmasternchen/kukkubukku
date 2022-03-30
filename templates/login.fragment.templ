@@ -1,4 +1,7 @@
 <form method="POST" action="?">
+	{{ if test $(queryString "status" = "fail"); then }}
+		<p>Login failed</p>
+	{{ fi }}
 	<input type="text" placeholder="Username" name="username"><br />
 	<input type="password" placeholder="Password" name="password"><br />
 	<input type="submit" name="submit"><br />

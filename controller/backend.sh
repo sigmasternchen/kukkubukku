@@ -3,9 +3,10 @@
 route GET "/backend" backendHome
 backendHome() {
 	requireLoggedIn
+	htmlContent
 	endHeaders
-	
+
 	title="Backend"
-	content="$(template "templates/backend.fragment.templ")"
+	content="$(getRecipesByUsername "$username" | template "templates/backend.fragment.templ")"
 	template "templates/layout.html.templ"
 }

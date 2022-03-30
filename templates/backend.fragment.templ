@@ -1,2 +1,12 @@
 <h1>Hi</h1>
 You are {{ print $username }}.
+
+<ul>
+	{{ while read line; do }}
+		<li>
+			<a href="/recipe?id={{ echo "$line" | getColumns 1 }}">
+				{{ echo "$line" | getColumns 2 }}
+			</a>
+		</li>
+	{{ done }}
+</ul>

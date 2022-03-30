@@ -4,6 +4,11 @@ _sessionKeyUsername="username"
 
 username=""
 
+setLoggedIn() {
+	startSession
+	setSessionValue "$_sessionKeyUsername" "$1"
+}
+
 isLoggedIn() {
 	username="$(getSessionValue "$_sessionKeyUsername")"
 	test ! -z "$username"
