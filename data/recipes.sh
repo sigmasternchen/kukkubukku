@@ -15,6 +15,26 @@ getRecipesByUsername() {
 EOF
 }
 
+getRecipeById() {
+	local id="$(echo "$1" | sed 's/[^0-9]//g')"
+
+	query <<EOF
+		SELECT
+			recipes.name,
+			description,
+			ingredients.name,
+			ingredients.quantity,
+			users.id,
+			users.username
+		FROM recipes
+		INNER JOIN ingredients
+			ON recipes.id = ingredients.recipeFk
+		INNER JOIN users
+			ON recipes.userFk = users.id
+		WHERE recipes.id = $id
+EOF
+}
+
 addRecipe() {
 	local name="$1"
 	local description="$2"

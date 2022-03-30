@@ -1,0 +1,19 @@
+<h1>{{ print "$name" }}</h1>
+<p>
+	from <a href="/profile?id={{ print "$uid" }}">{{ print "$author" }}</a>
+</p>
+<table>
+	{{ for i in $(seq $nrIngredients); do }}
+		<tr>
+			<td>
+				{{ echo "$qts" | tail -n +$i | head -n 1 }}
+			</td>
+			<td>
+				{{ echo "$ingredients" | tail -n +$i | head -n 1 }}
+			</td>
+		</tr>
+	{{ done }}
+</table>
+<p>
+	{{ print "$description" }}
+</p>
