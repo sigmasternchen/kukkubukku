@@ -1,4 +1,9 @@
 <h1>{{ print "$name" }}</h1>
+<ul>
+	{{ for t in $tags; do }}
+		<li>{{ print "$t" }}</li>
+	{{ done }}
+</ul>
 <p>
 	from <a href="/profile?id={{ print "$uid" }}">{{ print "$author" }}</a>
 </p>

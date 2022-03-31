@@ -33,7 +33,9 @@ recipe() {
 	ingredients="$(echo "$result" | getColumns 3)"
 	nrIngredients="$(echo "$qts" | wc -l)"
 
-	title=""
+	tags="$(getTagsByRecipeId "$id" | getColumns 1)"
+
+	title="$name"
 	content="$(template "templates/recipe.fragment.templ")"
 	template "templates/layout.html.templ"
 }

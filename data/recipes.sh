@@ -35,6 +35,18 @@ getRecipeById() {
 EOF
 }
 
+getTagsByRecipeId() {
+	local id="$(echo "$1" | sed 's/[^0-9]//g')"
+
+	query <<EOF
+		SELECT DISTINCT name
+		FROM tags
+		INNER JOIN recipeTags
+			ON recipeTags.tagFk = tags.id
+		WHERE recipeFk = $id
+EOF
+}
+
 addRecipe() {
 	local name="$1"
 	local description="$2"
