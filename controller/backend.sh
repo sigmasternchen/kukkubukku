@@ -31,6 +31,7 @@ backendAdd() {
 	description="$(formData "description")"
 	qts="$(formData "qts")"
 	ingredients="$(formData "ingredients")"
+	tags="$(formData "tags" | tr '[:upper:]' '[:lower:]')"
 
 	if test "$(echo "$qts" | wc -l)" -ne "$(echo "$ingredients" | wc -l)"; then
 		status 400
@@ -38,7 +39,7 @@ backendAdd() {
 		return
 	fi
 
-	addRecipe "$name" "$description" "$username" "$qts" "$ingredients"
+	addRecipe "$name" "$description" "$username" "$qts" "$ingredients" "$tags"
 
 	redirect "/backend"
 	endHeaders
