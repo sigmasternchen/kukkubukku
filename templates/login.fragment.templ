@@ -1,5 +1,5 @@
 <form method="POST" action="?">
-	{{ if test $(queryString "status" = "fail"); then }}
+	{{ if test "$(queryString "status")" = "fail"; then }}
 		<p>Login failed</p>
 	{{ fi }}
 	<input type="text" placeholder="Username" name="username"><br />
